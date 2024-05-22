@@ -1,4 +1,5 @@
 import "./App.css";
+import "../keycloak-theme/login/globals.css";
 import reactSvgUrl from "./assets/react.svg";
 import viteSvgUrl from "./assets/vite.svg";
 import { OidcProvider, useOidc, getKeycloakAccountUrl } from "./oidc";

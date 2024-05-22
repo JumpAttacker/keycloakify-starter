@@ -5,6 +5,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
 import type { KcContext } from "../kcContext";
 import type { I18n } from "../i18n";
+import {Button} from "@/components/ui/button.tsx";
 
 const my_custom_param = new URL(window.location.href).searchParams.get("my_custom_param");
 
@@ -177,6 +178,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         </form>
                     )}
                 </div>
+                <Button className={'mt-5'}>Test button shadCN</Button>
                 {realm.password && social.providers !== undefined && (
                     <div
                         id="kc-social-providers"

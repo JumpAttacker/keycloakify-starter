@@ -1,6 +1,6 @@
 import { clsx } from "keycloakify/tools/clsx";
 import { useRerenderOnStateChange } from "evt/hooks";
-import { Markdown } from "keycloakify/tools/Markdown";
+// import { Markdown } from "keycloakify/tools/Markdown";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
 import { evtTermMarkdown } from "keycloakify/login/lib/useDownloadTerms";
@@ -32,6 +32,7 @@ export default function Terms(props: PageProps<Extract<KcContext, { pageId: "ter
             })();
 
             const markdownString = await fetch(tos_url).then(response => response.text());
+            // const markdownString = await fetch('https://reflinker.net/RefLinkerPrivacy.docx').then(response => response.text());
 
             return markdownString;
 
@@ -51,7 +52,7 @@ export default function Terms(props: PageProps<Extract<KcContext, { pageId: "ter
     return (
         <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} displayMessage={false} headerNode={msg("termsTitle")}>
             <div id="kc-terms-text">
-                <Markdown>{termMarkdown}</Markdown>
+                <a href="https://reflinker.net/RefLinkerPrivacy.docx">Политика конфиденциальности</a>
             </div>
             <form className="form-actions" action={url.loginAction} method="POST">
                 <input
