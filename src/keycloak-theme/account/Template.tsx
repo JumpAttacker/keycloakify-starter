@@ -7,6 +7,8 @@ import { useGetClassName } from "keycloakify/account/lib/useGetClassName";
 import type { KcContext } from "./kcContext";
 import type { I18n } from "./i18n";
 import { assert } from "keycloakify/tools/assert";
+import {HeroHighlight} from "@/components/ui/hero-highlight.tsx";
+import {cn} from "@/lib/utils.ts";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, active, classes, children } = props;
@@ -40,7 +42,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 <nav className="navbar" role="navigation">
                     <div className="navbar-header">
                         <div className="container">
-                            <h1 className="navbar-title">Keycloak</h1>
+                            <h1 className="text-white py-5 text-4xl">RefLinker</h1>
                         </div>
                     </div>
                     <div className="navbar-collapse navbar-collapse-1">
@@ -80,7 +82,10 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 </nav>
             </header>
 
-            <div className="container">
+            <HeroHighlight className={cn("container")}
+                           containerClassName={
+                "flex items-center justify-center min-h-screen bg-background text-foreground"
+            }>
                 <div className="bs-sidebar col-sm-3">
                     <ul>
                         <li className={clsx(active === "account" && "active")}>
@@ -129,7 +134,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
                     {children}
                 </div>
-            </div>
+            </HeroHighlight>
         </>
     );
 }

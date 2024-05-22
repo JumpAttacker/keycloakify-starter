@@ -1,11 +1,10 @@
-import { useState, type FormEventHandler } from "react";
-import { clsx } from "keycloakify/tools/clsx";
-import { useConstCallback } from "keycloakify/tools/useConstCallback";
-import type { PageProps } from "keycloakify/login/pages/PageProps";
-import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
-import type { KcContext } from "../kcContext";
-import type { I18n } from "../i18n";
-import {Button} from "@/components/ui/button.tsx";
+import {type FormEventHandler, useState} from "react";
+import {clsx} from "keycloakify/tools/clsx";
+import {useConstCallback} from "keycloakify/tools/useConstCallback";
+import type {PageProps} from "keycloakify/login/pages/PageProps";
+import {useGetClassName} from "keycloakify/login/lib/useGetClassName";
+import type {KcContext} from "../kcContext";
+import type {I18n} from "../i18n";
 
 const my_custom_param = new URL(window.location.href).searchParams.get("my_custom_param");
 
@@ -14,16 +13,16 @@ if (my_custom_param !== null) {
 }
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
-    const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
+    const {kcContext, i18n, doUseDefaultCss, Template, classes} = props;
 
-    const { getClassName } = useGetClassName({
+    const {getClassName} = useGetClassName({
         doUseDefaultCss,
         classes
     });
 
-    const { social, realm, url, usernameHidden, login, auth, registrationDisabled } = kcContext;
+    const {social, realm, url, usernameHidden, login, auth, registrationDisabled} = kcContext;
 
-    const { msg, msgStr } = i18n;
+    const {msg, msgStr} = i18n;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
@@ -43,7 +42,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
     return (
         <Template
-            {...{ kcContext, i18n, doUseDefaultCss, classes }}
+            {...{kcContext, i18n, doUseDefaultCss, classes}}
             displayInfo={
                 realm.password &&
                 realm.registrationAllowed &&
@@ -178,7 +177,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         </form>
                     )}
                 </div>
-                <Button className={'mt-5'}>Test button shadCN</Button>
                 {realm.password && social.providers !== undefined && (
                     <div
                         id="kc-social-providers"

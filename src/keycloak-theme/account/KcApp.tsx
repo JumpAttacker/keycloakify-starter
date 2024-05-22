@@ -1,4 +1,5 @@
 import "./KcApp.css";
+import "./globals.css";
 import { lazy, Suspense } from "react";
 import type { PageProps } from "keycloakify/account";
 import type { KcContext } from "./kcContext";

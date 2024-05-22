@@ -51,8 +51,9 @@ export default function Terms(props: PageProps<Extract<KcContext, { pageId: "ter
 
     return (
         <Template {...{ kcContext, i18n, doUseDefaultCss, classes }} displayMessage={false} headerNode={msg("termsTitle")}>
-            <div id="kc-terms-text">
-                <a href="https://reflinker.net/RefLinkerPrivacy.docx">Политика конфиденциальности</a>
+            <div id="kc-terms-text" className={'flex flex-col gap-4 underline'}>
+                <a href="https://reflinker.net/UserAgreement.pdf">Пользовательское соглашение</a>
+                <a href="https://reflinker.net/Privacy.pdf">Политика конфиденциальности</a>
             </div>
             <form className="form-actions" action={url.loginAction} method="POST">
                 <input

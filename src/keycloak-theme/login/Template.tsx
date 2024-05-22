@@ -1,14 +1,15 @@
 // Copy pasted from: https://github.com/InseeFrLab/keycloakify/blob/main/src/login/Template.tsx
 
-import { useEffect } from "react";
-import { assert } from "keycloakify/tools/assert";
-import { clsx } from "keycloakify/tools/clsx";
-import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
-import { type TemplateProps } from "keycloakify/login/TemplateProps";
-import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
-import type { KcContext } from "./kcContext";
-import type { I18n } from "./i18n";
-import keycloakifyLogoPngUrl from "./assets/keycloakify-logo.png";
+import {useEffect} from "react";
+import {assert} from "keycloakify/tools/assert";
+import {clsx} from "keycloakify/tools/clsx";
+import {usePrepareTemplate} from "keycloakify/lib/usePrepareTemplate";
+import {type TemplateProps} from "keycloakify/login/TemplateProps";
+import {useGetClassName} from "keycloakify/login/lib/useGetClassName";
+import type {KcContext} from "./kcContext";
+import type {I18n} from "./i18n";
+import {HeroHighlight} from "@/components/ui/hero-highlight.tsx";
+import {cn} from "@/lib/utils.ts";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -27,13 +28,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         children
     } = props;
 
-    const { getClassName } = useGetClassName({ doUseDefaultCss, classes });
+    const {getClassName} = useGetClassName({doUseDefaultCss, classes});
 
-    const { msg, changeLocale, labelBySupportedLanguageTag, currentLanguageTag } = i18n;
+    const {msg, changeLocale, labelBySupportedLanguageTag, currentLanguageTag} = i18n;
 
-    const { realm, locale, auth, url, message, isAppInitiatedAction } = kcContext;
+    const {realm, locale, auth, url, message, isAppInitiatedAction} = kcContext;
 
-    const { isReady } = usePrepareTemplate({
+    const {isReady} = usePrepareTemplate({
         "doFetchDefaultThemeResources": doUseDefaultCss,
         "styles": [
             `${url.resourcesCommonPath}/node_modules/patternfly/dist/css/patternfly.min.css`,
@@ -56,22 +57,18 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <div className={getClassName("kcLoginClass")}>
+        <HeroHighlight
+            className={cn(getClassName("kcLoginClass"), "flex flex-col items-center justify-center")}
+            containerClassName={
+                "flex items-center justify-center min-h-screen bg-background text-foreground"
+            }>
             <div id="kc-header" className={getClassName("kcHeaderClass")}>
-                <div 
-                    id="kc-header-wrapper" 
+                <div
+                    id="kc-header-wrapper"
                     className={getClassName("kcHeaderWrapperClass")}
-                    style={{ "fontFamily": '"Work Sans"' }}
+                    style={{"fontFamily": '"Work Sans"'}}
                 >
-                    {/* 
-                        Here we are referencing the `keycloakify-logo.png` in the `public` directory.  
-                        When possible don't use this approach, instead ...
-                    */}
-                    <img src={keycloakifyLogoPngUrl} alt="Keycloakify logo" width={50} />
-                    {/*<img src={`${import.meta.env.BASE_URL}keycloakify-logo.png`} alt="Keycloakify logo" width={50} />*/}
-                    {msg("loginTitleHtml", realm.displayNameHtml)}!!!
-                    {/* ...rely on the bundler to import your assets, it's more efficient */}
-                    <img src={keycloakifyLogoPngUrl} alt="Keycloakify logo" width={50} />
+                    {msg("loginTitleHtml", realm.displayNameHtml)}
                 </div>
             </div>
 
@@ -85,7 +82,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                         {labelBySupportedLanguageTag[currentLanguageTag]}
                                     </a>
                                     <ul>
-                                        {locale.supported.map(({ languageTag }) => (
+                                        {locale.supported.map(({languageTag}) => (
                                             <li key={languageTag} className="kc-dropdown-item">
                                                 <a href="#" onClick={() => changeLocale(languageTag)}>
                                                     {labelBySupportedLanguageTag[languageTag]}
@@ -183,7 +180,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                     )}
                                 >
                                     <div className={getClassName("kcFormGroupClass")}>
-                                        <input type="hidden" name="tryAnotherWay" value="on" />
+                                        <input type="hidden" name="tryAnotherWay" value="on"/>
                                         <a
                                             href="#"
                                             id="try-another-way"
@@ -208,6 +205,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </div>
                 </div>
             </div>
-        </div>
+        </HeroHighlight>
     );
 }
