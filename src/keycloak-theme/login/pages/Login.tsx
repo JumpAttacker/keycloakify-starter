@@ -70,7 +70,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                     )}
                 >
                     {realm.password && (
-                        <form id="kc-form-login" onSubmit={onSubmit} action={url.loginAction} method="post">
+                        <form id="kc-form-login" onSubmit={onSubmit} action={url.loginAction} method="post" className={'w-[300px]'}>
                             <div className={getClassName("kcFormGroupClass")}>
                                 {!usernameHidden &&
                                     (() => {
